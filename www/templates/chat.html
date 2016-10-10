@@ -1,0 +1,24 @@
+<ion-view>
+
+  <ion-header-bar class="bar-dark">
+    <div class="title">Chatting as {{chat.nickname}}</div>
+  </ion-header-bar>
+
+  <div class="bar bar-subheader">
+    <p class="title"> {{message}}</p>
+  </div>
+
+  <ion-content>
+
+  </ion-content>
+
+  <div class="bar bar-footer item-input-inset footer-item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-android-chat placeholder-icon"></i>
+      <input type="text" placeholder="message" ng-model="message" />
+    </label>
+
+    <button class="button button-dark button-clear ion-android-send icon" ng-click="chat.sendMessage()"></button>
+  </div>
+
+</ion-view>
