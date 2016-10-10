@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'btford.socket-io'])
     $urlRouterProvider.otherwise('/login');
 })
 
-.factory('mySocket', function (socketFactory) {
+.factory('Socket', function (socketFactory) {
   var myIoSocket = io.connect('https://gupshup-adda-rockypro92.c9users.io');
 
   mySocket = socketFactory({
@@ -62,7 +62,16 @@ angular.module('starter', ['ionic', 'btford.socket-io'])
   }
 })
 
-.controller('chatCtrl', function($scope, $stateParams, mySocket){
+.controller('chatCtrl', function($scope, $stateParams, Socket){
+
+  var data = {message: "Hello, Server"};
+  Socket.on("connect", function(){
+    Socket.emit("Message", data);
+  });
+
+  Socket.on("Message", function(data){
+    alert(data.message);
+  })
 
   var chat = this;
   chat.nickname = $stateParams.nickname;
