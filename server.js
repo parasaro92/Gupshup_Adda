@@ -16,7 +16,7 @@ io.on("connection", function(socket){
         
         console.log(data.message);
         
-        socket.emit("Message", {message: "Hello, Client"});
+        io.emit("Message", data);
     });
 })
 

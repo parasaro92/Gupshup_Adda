@@ -8,8 +8,13 @@
     <p class="title"> {{message}}</p>
   </div>
 
-  <ion-content>
-
+  <ion-content class="has-subheader">
+    <ion-list class="list">
+      <li ng-repeat="msg in chat.messages" class="item item-avatar-left">
+        <img src="http://smartcallcentersolutions.com/images/profile_icon.png" />
+        {{msg.sender}}: {{msg.message}}
+      </li>
+    </ion-list>
   </ion-content>
 
   <div class="bar bar-footer item-input-inset footer-item-input-inset">

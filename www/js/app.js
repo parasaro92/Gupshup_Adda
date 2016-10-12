@@ -57,22 +57,26 @@ angular.module('starter', ['ionic', 'btford.socket-io'])
 
   var login = this;
   login.join = function(nickname){
-
-    $state.go('chat', {nickname: nickname});
+    if(nickname) {
+      $state.go('chat', {nickname: nickname});
+    }
   }
 })
 
 .controller('chatCtrl', function($scope, $stateParams, Socket){
 
-  var data = {message: "Hello, Server"};
+  var chat = this;
+  chat.nickname = $stateParams.nickname;
+  chat.messages = [];
+
+  var data = {message: "User has joined!", sender: chat.nickname};
+
   Socket.on("connect", function(){
     Socket.emit("Message", data);
   });
 
   Socket.on("Message", function(data){
-    alert(data.message);
+    chat.messages.push(data);
   })
 
-  var chat = this;
-  chat.nickname = $stateParams.nickname;
 })
